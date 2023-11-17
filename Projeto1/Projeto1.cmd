@@ -1,0 +1,2 @@
+@echo off
+"C:\Program Files\Java\jdk1.8.0_202\bin\java" -cp "D:\TALP\Cyan\lib\cyan.lang.jar";"D:\TALP\Cyan\lib";"D:\TALP\Projetos-TALP\Projetos-TALP\java-for-Projeto1";"D:\TALP\Cyan\lib\cyanruntime.jar"  main.Project

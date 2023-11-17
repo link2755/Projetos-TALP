@@ -1,0 +1,68 @@
+package main
+
+open
+object Program 
+    func run {
+        var k = false;
+        var CatchStrCast myCatch;
+        if k { myCatch = CatchStrCast }
+        else { myCatch = SoftCatchStrCast }
+
+        var n = 20;
+        try
+            if n <= 0 {
+                throw ExceptionStr("Num <= 0")
+            }
+            if n >= 13 {
+                throw ExceptionCast("number cannot be month")
+            }
+        catch myCatch;
+
+        var exc = { (: ExceptionStr e :)
+            e message println
+        };
+
+        exc eval: ExceptionStr("An exception was thrown.");
+    }
+
+/*
+    func run {
+        var Function<Int, Double, String> fids = {
+            (: Int n, Double d :)
+            ^ (n asDouble + d) asString
+            };
+        (fids eval: 4, 10.0) println;
+        (fids eval: 3, 0.14159265) println;
+        
+        var Function<Nil> f = { 
+            "Function f called" println
+        };  
+        f eval;  // f()
+        var Function<Int, Int> g = { (: Int n :) ^n*n };
+        (g eval: 5) println;
+        var exc = { (: ExceptionStr e :) 
+            e message println 
+        };
+        exc eval: ExceptionStr("An exception was throw");
+        // exc(ExceptionStr("An exception was throw"));
+        
+    }
+*/
+
+/*
+        var Function<ExceptionCast, Nil> catchCast;
+        var input = 10;
+        if input <= 0 {
+            catchCast = { (: ExceptionCast e :) 
+                var msg = e message;
+                "ExceptionCast throw with message $msg" println
+            }
+        } else {
+            catchCast = { (: ExceptionCast e :)
+                var msg = e message;
+                "End of program: ExceptionCast throw with message $msg" println;
+                System exit: 1
+            }
+        }
+*/
+end

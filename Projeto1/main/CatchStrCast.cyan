@@ -1,0 +1,16 @@
+package main
+
+open
+object CatchStrCast
+    overload
+    func eval: ExceptionStr e {
+        var msg = e message;
+        "ExceptionStr throw with message $msg" println;
+    }
+
+    func eval: ExceptionCast e {
+        var msg = e message;
+        "End of program: ExceptionCast throw with message: $msg." println;
+        System exit: 1
+    }
+end

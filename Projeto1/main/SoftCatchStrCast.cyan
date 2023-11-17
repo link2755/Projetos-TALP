@@ -1,0 +1,9 @@
+package main
+
+object SoftCatchStrCast extends CatchStrCast
+    override
+    func eval: ExceptionCast e {
+        var msg = e message;
+        "asdsvfwedfswfsewwwwwwwwwwww" println;
+    }
+end
