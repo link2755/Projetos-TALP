@@ -1,13 +1,15 @@
 package main
 
-object Program 
+object ProgramMP
 
     var Any d = Dummy();
 
+    /*
     func run {
         var j = toJson: Program();
         Out println: j;
     }
+    */
 
     /*
         Return a string JSON corresponding to obj.
