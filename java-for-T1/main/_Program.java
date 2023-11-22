@@ -5,7 +5,7 @@ import cyan.lang.*;
 
 
 @SuppressWarnings( { "unused", "cast", "hiding" } )
-public class _Program extends _Any
+public final class _Program extends _Any
  {
 
 	private static final long serialVersionUID = -3424597554829409059L;
@@ -33,8 +33,12 @@ public class _Program extends _Any
        }
 
     }
+    private     cyan.lang._Any _d;
 
     public     _Program() {
+    main._Dummy tmp459 = new main._Dummy( );
+
+    this._d = tmp459;
 
         } 
 
@@ -44,49 +48,436 @@ public class _Program extends _Any
         } 
 
     public void _run() {
-        CyBoolean tmp474 = CyBoolean.cyFalse;
+        main._Program tmp461 = new main._Program( );
+        CyString tmp460 = this._toJson_1( tmp461);
 
-        CyBoolean _k;
-        _k = tmp474;
-        _CatchStrCast _myCatch;
-        if ( _k.b ) {
-            /* myCatch = CatchStrCast */
-            _myCatch = _CatchStrCast.prototype;
+        CyString _j;
+        _j = tmp460;
+        _Nil tmp462 = _Nil.prototype;
+        _Out.prototype._println_1( _j);
+        return ;
+        } 
+
+    public CyString  _toJson_1( _Any _obj )  {
+
+        CyString _json;
+        _json = (new CyString("{\n"));
+        _Array_LT_GP_CyString_GT tmp463 = new _Array_LT_GP_CyString_GT( new CyInt(3) );
+        tmp463._add_1( (new CyString("getFeatureListNameDoesNotCollide__")));
+        tmp463._add_1( (new CyString("getAnnotListNameDoesNotCollide__")));
+        tmp463._add_1( (new CyString("getSlotFeatureListNameDoesNotCollide__")));
+
+        _Array_LT_GP_CyString_GT _excludedGets;
+        _excludedGets = tmp463;
+            {
+            CyString _methodSignature;
+            _Array_LT_GP_CyString_GT tmp464 = _obj._getMethodNameList();
+            _Iterator_LT_GP_CyString_GT tmp465 = tmp464._iterator();
+            while ( tmp465._hasNext().b ) { 
+                _methodSignature = tmp465._next();
+                CyBoolean tmp466 = _methodSignature._startsWith_1( (new CyString("get")));
+                if ( tmp466.b ) {
+                    CyString tmp467 = this.___getMethodName_1( _methodSignature);
+
+                    CyString _methodName;
+                    _methodName = tmp467;
+                    CyBoolean tmp468 = _methodName._notin_1( _excludedGets);
+                    if ( tmp468.b ) {
+                        String tmp470 =  CyanRuntime.getJavaNameOfUnaryMethod(((CyString ) _methodName).s);
+                        java.lang.reflect.Method tmp471 = CyanRuntime.getJavaMethodByName(_obj.getClass(), tmp470, 0);
+                        if ( tmp471 == null ) { tmp471 = CyanRuntime.getJavaMethodByName(_obj.getClass(), "_methodName", 0); }
+                        Object tmp472 = null;
+                        if ( tmp471 != null ) { 
+                            try {
+                                tmp471.setAccessible(true);
+                                if ( tmp471.getReturnType() == void.class ) {
+                                    tmp472 = _Nil.prototype;
+                                    tmp471.invoke(_obj);
+                                }
+                                else {
+                                    tmp472 = tmp471.invoke(_obj);
+                                }
+                            }
+                            catch ( java.lang.reflect.InvocationTargetException tmp473 ) {
+                            	Throwable t__ = tmp473.getCause();
+                            	if ( t__ instanceof ExceptionContainer__ ) {
+                                	throw new ExceptionContainer__( ((ExceptionContainer__) t__).elem );
+                            	}
+                            	else
+                            		throw new ExceptionContainer__( new _ExceptionJavaException(t__));
+                            }
+                            catch (IllegalAccessException | IllegalArgumentException tmp473) {
+                                    throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(_methodName ) );
+                            }
+                        }
+                        else { 
+                            //	func doesNotUnderstand: (String methodName, Array<Array<Dyn>> args)
+                            java.lang.reflect.Method tmp474 = CyanRuntime.getJavaMethodByName(_obj.getClass(), "_doesNotUnderstand_2", 2);
+                            if ( tmp474 == null ) {
+                                throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString("doesNotUnderstand") ) );
+                            }
+                            try {
+                                _Array_LT_GP__Array_LT_GP_Object_GT_GT arrayArrayParam = new _Array_LT_GP__Array_LT_GP_Object_GT_GT();
+                                _Array_LT_GP_Object_GT arrayParam = new _Array_LT_GP_Object_GT();
+                                arrayArrayParam._add_1( arrayParam );
+                                tmp474.setAccessible(true);
+                                tmp472 = tmp474.invoke(_obj, _methodName, arrayArrayParam);
+                            }
+                            catch ( java.lang.reflect.InvocationTargetException tmp475 ) {
+                            	Throwable t__ = tmp475.getCause();
+                            	if ( t__ instanceof ExceptionContainer__ ) {
+                                	throw new ExceptionContainer__( ((ExceptionContainer__) t__).elem );
+                            	}
+                            	else
+                            		throw new ExceptionContainer__( new _ExceptionJavaException(t__));
+                            }
+                            catch (IllegalAccessException | IllegalArgumentException tmp475) {
+                                    throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString(tmp470) ) );
+                            }
+                        }
+
+                        Object _value;
+                        _value = tmp472;
+                    }
+                    // end of if
+                }
+                // end of if
+            }
         }
-        else {
-            /* myCatch = SoftCatchStrCast */
-            _myCatch = _SoftCatchStrCast.prototype;
+        /* json = json ++ "}" */
+        CyString tmp476 = _json._plus_plus( (new CyString("}")));
+        _json = tmp476;
+
+        return _json;
+        } 
+
+    public CyString  ___getMethodName_1( CyString _methodSignature )  {
+        CyInt tmp477 = _methodSignature._indexOf_1( (new CyChar(':')));
+
+        CyInt _indexDoubleDot;
+        _indexDoubleDot = tmp477;
+        CyBoolean tmp478 = _indexDoubleDot._greaterThan_equal( CyInt.zero);
+        if ( tmp478.b ) {
+
+            return (new CyString(""));
         }
         // end of if
+        CyInt tmp479 = _methodSignature._indexOf_1( (new CyChar(' ')));
 
-        CyInt _n;
-        _n = (new CyInt( (int ) 20));
-        try {
-            CyBoolean tmp476 = _n._lessThan_equal( CyInt.zero);
-            if ( tmp476.b ) {
-                _ExceptionStr tmp477 = new _ExceptionStr( (new CyString("Num <= 0")));
-                throw new ExceptionContainer__(tmp477);
-            }
-            // end of if
-            CyBoolean tmp478 = _n._greaterThan_equal( (new CyInt( (int ) 13)));
-            if ( tmp478.b ) {
-                _ExceptionCast tmp479 = new _ExceptionCast( (new CyString("number cannot be month")));
-                throw new ExceptionContainer__(tmp479);
-            }
-            // end of if
-        }
-        catch (ExceptionContainer__ t) {
-            Object []tmp475 = new Object[1];
-            tmp475[0] = _myCatch;
-            CyanRuntime.catchException(tmp475,  t);
-        }
-        _Fun__0____ tmp480 = new _Fun__0____(this);
+        CyInt _indexWhiteSpace;
+        _indexWhiteSpace = tmp479;
+        CyBoolean tmp480 = _indexWhiteSpace._lessThan_equal( CyInt.zero);
+        if ( tmp480.b ) {
 
-        _Function_LT_GP__ExceptionStr_GP__Nil_GT _exc;
-        _exc = tmp480;
-        _ExceptionStr tmp482 = new _ExceptionStr( (new CyString("An exception was thrown.")));
-        _Nil tmp481 = _Nil.prototype;
-        _exc._eval_1( tmp482);
+            return (new CyString(""));
+        }
+        // end of if
+        CyString tmp481 = _methodSignature._substring_2( CyInt.zero, _indexWhiteSpace);
+
+        return tmp481;
+        } 
+
+    public _Any _getSomething4() {
+        return _d;
+        } 
+
+    public void _ex3() {
+        main._Program tmp482 = new main._Program( );
+
+        main._Program _p;
+        _p = tmp482;
+            {
+            CyString _methodSignature;
+            _Array_LT_GP_CyString_GT tmp483 = _p._getMethodNameList();
+            _Iterator_LT_GP_CyString_GT tmp484 = tmp483._iterator();
+            while ( tmp484._hasNext().b ) { 
+                _methodSignature = tmp484._next();
+                _Nil tmp485 = _Nil.prototype;
+                _methodSignature._println();
+            }
+        }
+        return ;
+        } 
+
+    public void _ex2() {
+            {
+            CyString _op;
+            _Array_LT_GP_CyString_GT tmp486 = new _Array_LT_GP_CyString_GT( new CyInt(4) );
+            tmp486._add_1( (new CyString("+")));
+            tmp486._add_1( (new CyString("-")));
+            tmp486._add_1( (new CyString("*")));
+            tmp486._add_1( (new CyString("/")));
+            _Iterator_LT_GP_CyString_GT tmp487 = tmp486._iterator();
+            while ( tmp487._hasNext().b ) { 
+                _op = tmp487._next();
+                    {
+                    CyInt _a;
+                    _Interval_LT_GP_CyInt_GT tmp488 = CyInt.one._dot_dot( (new CyInt( (int ) 10)));
+                    _Iterator_LT_GP_CyInt_GT tmp489 = tmp488._iterator();
+                    while ( tmp489._hasNext().b ) { 
+                        _a = tmp489._next();
+                            {
+                            CyInt _b;
+                            _Interval_LT_GP_CyInt_GT tmp490 = CyInt.one._dot_dot( (new CyInt( (int ) 10)));
+                            _Iterator_LT_GP_CyInt_GT tmp491 = tmp490._iterator();
+                            while ( tmp491._hasNext().b ) { 
+                                _b = tmp491._next();
+                                CyDouble tmp493 = _a._asDouble();
+                                CyDouble tmp495 = _b._asDouble();
+                                String tmp496 = "";
+                                tmp496 += ((CyString ) _op).s;
+                                char tmp497 = tmp496.charAt(0);
+                                if ( (tmp497 == '_' || Character.isAlphabetic(tmp497) ) && !tmp496.endsWith(":") ) { tmp496 += ":"; }
+                                String tmp498 =  CyanRuntime.getJavaNameOfMethod(new String[] { ((CyString ) _op).s }, new int[] {1} );
+                                java.lang.reflect.Method tmp499 = null;
+                                tmp499 = CyanRuntime.getJavaMethodByName(tmp493.getClass(), tmp498, 1);
+                                Object tmp500 = null;
+                                if ( tmp499 != null ) { 
+                                    try {
+                                        tmp499.setAccessible(true);
+                                        if ( tmp499.getReturnType() == void.class ) {
+                                            tmp500 = _Nil.prototype;
+                                            tmp499.invoke(tmp493, tmp495);
+                                        }
+                                        else {
+                                            tmp500 = tmp499.invoke(tmp493, tmp495);
+                                        }
+                                    }
+                                    catch ( java.lang.reflect.InvocationTargetException tmp501 ) {
+                                    	Throwable t__ = tmp501.getCause();
+                                    	if ( t__ instanceof ExceptionContainer__ ) {
+                                        	throw new ExceptionContainer__( ((ExceptionContainer__) t__).elem );
+                                    	}
+                                    	else
+                                    		throw new ExceptionContainer__( new _ExceptionJavaException(t__));
+                                    }
+                                    catch (IllegalAccessException | IllegalArgumentException tmp501) {
+                                            throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString(tmp496) ) );
+                                    }
+                                }
+                                else { 
+                                    //	func doesNotUnderstand: (String methodName, Array<Array<Dyn>> args)
+                                    java.lang.reflect.Method tmp502 = CyanRuntime.getJavaMethodByName(tmp493.getClass(), "_doesNotUnderstand_2", 2);
+                                    if ( tmp502 == null ) {
+                                        throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString("doesNotUnderstand") ) );
+                                    }
+                                    try {
+                                        _Array_LT_GP__Array_LT_GP_Object_GT_GT arrayArrayParam = new _Array_LT_GP__Array_LT_GP_Object_GT_GT();
+                                        _Array_LT_GP_Object_GT arrayParam = new _Array_LT_GP_Object_GT();
+                                        arrayParam._add_1(tmp495);
+                                        arrayArrayParam._add_1( arrayParam );
+                                        tmp502.setAccessible(true);
+                                        tmp500 = tmp502.invoke(tmp493, new CyString(tmp496), arrayArrayParam);
+                                    }
+                                    catch ( java.lang.reflect.InvocationTargetException tmp503 ) {
+                                    	Throwable t__ = tmp503.getCause();
+                                    	if ( t__ instanceof ExceptionContainer__ ) {
+                                        	throw new ExceptionContainer__( ((ExceptionContainer__) t__).elem );
+                                    	}
+                                    	else
+                                    		throw new ExceptionContainer__( new _ExceptionJavaException(t__));
+                                    }
+                                    catch (IllegalAccessException | IllegalArgumentException tmp503) {
+                                            throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString(tmp498) ) );
+                                    }
+                                }
+                                java.lang.reflect.Method tmp504 = CyanRuntime.getJavaMethodByName(tmp500.getClass(), "_print", 0);
+                                if ( tmp504 == null ) { tmp504 = CyanRuntime.getJavaMethodByName(tmp500.getClass(), "print", 0); }
+                                Object tmp505 = null;
+                                if ( tmp504 != null ) { 
+                                    try {
+                                        tmp504.setAccessible(true);
+                                        if ( tmp504.getReturnType() == void.class ) {
+                                            tmp505 = _Nil.prototype;
+                                            tmp504.invoke(tmp500);
+                                        }
+                                        else {
+                                            tmp505 = tmp504.invoke(tmp500);
+                                        }
+                                    }
+                                    catch ( java.lang.reflect.InvocationTargetException tmp506 ) {
+                                    	Throwable t__ = tmp506.getCause();
+                                    	if ( t__ instanceof ExceptionContainer__ ) {
+                                        	throw new ExceptionContainer__( ((ExceptionContainer__) t__).elem );
+                                    	}
+                                    	else
+                                    		throw new ExceptionContainer__( new _ExceptionJavaException(t__));
+                                    }
+                                    catch (IllegalAccessException | IllegalArgumentException tmp506) {
+                                            throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString("print") ) );
+                                    }
+                                }
+                                else { 
+                                    //	func doesNotUnderstand: (String methodName, Array<Array<Dyn>> args)
+                                    java.lang.reflect.Method tmp507 = CyanRuntime.getJavaMethodByName(tmp500.getClass(), "_doesNotUnderstand_2", 2);
+                                    if ( tmp507 == null ) {
+                                        throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString("doesNotUnderstand") ) );
+                                    }
+                                    try {
+                                        _Array_LT_GP__Array_LT_GP_Object_GT_GT arrayArrayParam = new _Array_LT_GP__Array_LT_GP_Object_GT_GT();
+                                        _Array_LT_GP_Object_GT arrayParam = new _Array_LT_GP_Object_GT();
+                                        arrayArrayParam._add_1( arrayParam );
+                                        tmp507.setAccessible(true);
+                                        tmp505 = tmp507.invoke(tmp500, new CyString("print"), arrayArrayParam);
+                                    }
+                                    catch ( java.lang.reflect.InvocationTargetException tmp508 ) {
+                                    	Throwable t__ = tmp508.getCause();
+                                    	if ( t__ instanceof ExceptionContainer__ ) {
+                                        	throw new ExceptionContainer__( ((ExceptionContainer__) t__).elem );
+                                    	}
+                                    	else
+                                    		throw new ExceptionContainer__( new _ExceptionJavaException(t__));
+                                    }
+                                    catch (IllegalAccessException | IllegalArgumentException tmp508) {
+                                            throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString("_print") ) );
+                                    }
+                                }
+                                _Nil tmp509 = _Nil.prototype;
+                                (new CyString(" "))._print();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return ;
+        } 
+
+    public void _ex1() {
+
+        CyString _s;
+        _s = (new CyString("+"));
+
+        CyString _mn;
+        _mn = (new CyString("substring:"));
+        String tmp512 = "";
+        tmp512 += ((CyString ) _s).s;
+        char tmp513 = tmp512.charAt(0);
+        if ( (tmp513 == '_' || Character.isAlphabetic(tmp513) ) && !tmp512.endsWith(":") ) { tmp512 += ":"; }
+        String tmp514 =  CyanRuntime.getJavaNameOfMethod(new String[] { ((CyString ) _s).s }, new int[] {1} );
+        java.lang.reflect.Method tmp515 = null;
+        tmp515 = CyanRuntime.getJavaMethodByName((new CyInt( (int ) 3)).getClass(), tmp514, 1);
+        Object tmp516 = null;
+        if ( tmp515 != null ) { 
+            try {
+                tmp515.setAccessible(true);
+                if ( tmp515.getReturnType() == void.class ) {
+                    tmp516 = _Nil.prototype;
+                    tmp515.invoke((new CyInt( (int ) 3)), (new CyInt( (int ) 7)));
+                }
+                else {
+                    tmp516 = tmp515.invoke((new CyInt( (int ) 3)), (new CyInt( (int ) 7)));
+                }
+            }
+            catch ( java.lang.reflect.InvocationTargetException tmp517 ) {
+            	Throwable t__ = tmp517.getCause();
+            	if ( t__ instanceof ExceptionContainer__ ) {
+                	throw new ExceptionContainer__( ((ExceptionContainer__) t__).elem );
+            	}
+            	else
+            		throw new ExceptionContainer__( new _ExceptionJavaException(t__));
+            }
+            catch (IllegalAccessException | IllegalArgumentException tmp517) {
+                    throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString(tmp512) ) );
+            }
+        }
+        else { 
+            //	func doesNotUnderstand: (String methodName, Array<Array<Dyn>> args)
+            java.lang.reflect.Method tmp518 = CyanRuntime.getJavaMethodByName((new CyInt( (int ) 3)).getClass(), "_doesNotUnderstand_2", 2);
+            if ( tmp518 == null ) {
+                throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString("doesNotUnderstand") ) );
+            }
+            try {
+                _Array_LT_GP__Array_LT_GP_Object_GT_GT arrayArrayParam = new _Array_LT_GP__Array_LT_GP_Object_GT_GT();
+                _Array_LT_GP_Object_GT arrayParam = new _Array_LT_GP_Object_GT();
+                arrayParam._add_1((new CyInt( (int ) 7)));
+                arrayArrayParam._add_1( arrayParam );
+                tmp518.setAccessible(true);
+                tmp516 = tmp518.invoke((new CyInt( (int ) 3)), new CyString(tmp512), arrayArrayParam);
+            }
+            catch ( java.lang.reflect.InvocationTargetException tmp519 ) {
+            	Throwable t__ = tmp519.getCause();
+            	if ( t__ instanceof ExceptionContainer__ ) {
+                	throw new ExceptionContainer__( ((ExceptionContainer__) t__).elem );
+            	}
+            	else
+            		throw new ExceptionContainer__( new _ExceptionJavaException(t__));
+            }
+            catch (IllegalAccessException | IllegalArgumentException tmp519) {
+                    throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString(tmp514) ) );
+            }
+        }
+        _Any tmp520;
+        if ( tmp516 instanceof _Any ) 
+            tmp520 = (_Any ) tmp516;
+        else
+            throw new ExceptionContainer__(new _ExceptionCast( new CyString("Cannot cast expression '(3 `s: 7)' to 'cyan.lang.Any' in line 84 of file Program.cyan") ) );
+        _Nil tmp510 = _Nil.prototype;
+        _Out.prototype._println_1( tmp520);
+        String tmp523 = "";
+        tmp523 += ((CyString ) _mn).s;
+        char tmp524 = tmp523.charAt(0);
+        if ( (tmp524 == '_' || Character.isAlphabetic(tmp524) ) && !tmp523.endsWith(":") ) { tmp523 += ":"; }
+        String tmp525 =  CyanRuntime.getJavaNameOfMethod(new String[] { ((CyString ) _mn).s }, new int[] {1} );
+        java.lang.reflect.Method tmp526 = null;
+        tmp526 = CyanRuntime.getJavaMethodByName((new CyString("abcde")).getClass(), tmp525, 1);
+        Object tmp527 = null;
+        if ( tmp526 != null ) { 
+            try {
+                tmp526.setAccessible(true);
+                if ( tmp526.getReturnType() == void.class ) {
+                    tmp527 = _Nil.prototype;
+                    tmp526.invoke((new CyString("abcde")), CyInt.two);
+                }
+                else {
+                    tmp527 = tmp526.invoke((new CyString("abcde")), CyInt.two);
+                }
+            }
+            catch ( java.lang.reflect.InvocationTargetException tmp528 ) {
+            	Throwable t__ = tmp528.getCause();
+            	if ( t__ instanceof ExceptionContainer__ ) {
+                	throw new ExceptionContainer__( ((ExceptionContainer__) t__).elem );
+            	}
+            	else
+            		throw new ExceptionContainer__( new _ExceptionJavaException(t__));
+            }
+            catch (IllegalAccessException | IllegalArgumentException tmp528) {
+                    throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString(tmp523) ) );
+            }
+        }
+        else { 
+            //	func doesNotUnderstand: (String methodName, Array<Array<Dyn>> args)
+            java.lang.reflect.Method tmp529 = CyanRuntime.getJavaMethodByName((new CyString("abcde")).getClass(), "_doesNotUnderstand_2", 2);
+            if ( tmp529 == null ) {
+                throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString("doesNotUnderstand") ) );
+            }
+            try {
+                _Array_LT_GP__Array_LT_GP_Object_GT_GT arrayArrayParam = new _Array_LT_GP__Array_LT_GP_Object_GT_GT();
+                _Array_LT_GP_Object_GT arrayParam = new _Array_LT_GP_Object_GT();
+                arrayParam._add_1(CyInt.two);
+                arrayArrayParam._add_1( arrayParam );
+                tmp529.setAccessible(true);
+                tmp527 = tmp529.invoke((new CyString("abcde")), new CyString(tmp523), arrayArrayParam);
+            }
+            catch ( java.lang.reflect.InvocationTargetException tmp530 ) {
+            	Throwable t__ = tmp530.getCause();
+            	if ( t__ instanceof ExceptionContainer__ ) {
+                	throw new ExceptionContainer__( ((ExceptionContainer__) t__).elem );
+            	}
+            	else
+            		throw new ExceptionContainer__( new _ExceptionJavaException(t__));
+            }
+            catch (IllegalAccessException | IllegalArgumentException tmp530) {
+                    throw new ExceptionContainer__( new _ExceptionDoesNotUnderstand(new CyString(tmp525) ) );
+            }
+        }
+        _Any tmp531;
+        if ( tmp527 instanceof _Any ) 
+            tmp531 = (_Any ) tmp527;
+        else
+            throw new ExceptionContainer__(new _ExceptionCast( new CyString("Cannot cast expression '(\"abcde\" `mn: 2)' to 'cyan.lang.Any' in line 85 of file Program.cyan") ) );
+        _Nil tmp521 = _Nil.prototype;
+        _Out.prototype._println_1( tmp531);
         return ;
         } 
 
@@ -105,49 +496,41 @@ public class _Program extends _Any
         } 
 
     public @Override _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT _getFeatureListNameDoesNotCollide____() {
-        _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT tmp483 = new _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
+        _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT tmp532 = new _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
 
-        return tmp483;
+        return tmp532;
         } 
 
     public @Override _Array_LT_GP__Any_GT _getAnnotListNameDoesNotCollide____() {
-        _Array_LT_GP__Any_GT tmp484 = new _Array_LT_GP__Any_GT();
+        _Array_LT_GP__Any_GT tmp533 = new _Array_LT_GP__Any_GT();
 
-        return tmp484;
+        return tmp533;
         } 
 
     public @Override _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT _getSlotFeatureListNameDoesNotCollide____() {
-        _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT tmp485 = new _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
+        _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT tmp534 = new _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
 
         _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT _slotFeatureList__name__does__not__collide____;
-        _slotFeatureList__name__does__not__collide____ = tmp485;
+        _slotFeatureList__name__does__not__collide____ = tmp534;
 
         return _slotFeatureList__name__does__not__collide____;
         } 
     public static _Program prototype;
-    private static _Fun__0____ prototypeFun_0__;
 
-    static final String []fieldListFun_0__ = {  };
-    static final String []fieldTypeListFun_0__ = {  };
-    public static _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT featureListFun_0__ = new _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
-    public static _Array_LT_GP__Any_GT annotListFun_0__ = new _Array_LT_GP__Any_GT();
-
-    static final _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT slotFeatureListFun_0__ = new _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
-    static CyString []methodNameListFun_0__ = { 
-        new CyString("eval: ExceptionStr -> Nil"),
-        new CyString("clone -> main.Fun_0__"),
-        new CyString("prototype -> main.Fun_0__")
-        };
-
-
-    static final String []fieldList = {  };
-    static final String []fieldTypeList = {  };
+    static final String []fieldList = { "d" };
+    static final String []fieldTypeList = { "cyan.lang.Any" };
     public static _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT featureList = new _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
     public static _Array_LT_GP__Any_GT annotList = new _Array_LT_GP__Any_GT();
 
     static final _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT slotFeatureList = new _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
     static CyString []methodNameList = { 
         new CyString("run -> Nil"),
+        new CyString("toJson: Any -> String"),
+        new CyString("_getMethodName: String -> String"),
+        new CyString("getSomething4 -> Any"),
+        new CyString("ex3 -> Nil"),
+        new CyString("ex2 -> Nil"),
+        new CyString("ex1 -> Nil"),
         new CyString("prototype -> main.Program"),
         new CyString("clone -> main.Program"),
         new CyString("getFeatureListNameDoesNotCollide__ -> Array<Tuple<key,String,value,Any>>"),
@@ -199,87 +582,6 @@ public class _Program extends _Any
     private _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT _getFeatureListNameDoesNotCollide_____super__() { return super._getFeatureListNameDoesNotCollide____(); }
     private _Array_LT_GP__Any_GT _getAnnotListNameDoesNotCollide_____super__() { return super._getAnnotListNameDoesNotCollide____(); }
     private _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT _getSlotFeatureListNameDoesNotCollide_____super__() { return super._getSlotFeatureListNameDoesNotCollide____(); }
-    
-    @SuppressWarnings( { "unused", "cast", "hiding" } )
-private class _Fun__0____ extends cyan.lang._Function_LT_GP__ExceptionStr_GP__Nil_GT
- {
-
-	private static final long serialVersionUID = 8886654447734910976L;
-        public _Fun__0____(NonExistingJavaClass doNotExit) {
-            super();
-        }
-        private         main._Program _self____;
-        public _Fun__0____() { }
-
-        public         _Fun__0____(main._Program _self____)  {
-
-            
-        this._self____ = _self____;
-        
-            } 
-
-        public _Fun__0____  _new_1( main._Program _self____ )  {
-             
-            return new _Fun__0____(_self____);
-        
-            } 
-
-        public @Override void  _eval_1( _ExceptionStr _e )  {
-            CyString tmp487 = _e._message();
-            _Nil tmp486 = _Nil.prototype;
-            tmp487._println();
-            return ;
-            } 
-
-        public @Override _Fun__0____ _clone() {
-            
-        try {
-            return (_Fun__0____ ) this.clone(); 
-        } catch (CloneNotSupportedException e) { }
-        return null;
-        
-            } 
-
-        public @Override _Fun__0____ _prototype() {
-             return prototypeFun_0__;
-        
-            } 
-    public String []getFieldTypeList() { 
-        return fieldTypeListFun_0__;
-    }
-    public String []getFieldList() { 
-        return fieldListFun_0__;
-    }
-    public String asString(int ident) {
-        String s =  "Fun_0__ {\n";
-        s = s + "super(cyan.lang.Function<ExceptionStr,Nil>):"  + super.asStringThisOnly( ident + _Any.defaultIdentNumber__ );
-        s = s + asStringThisOnly( ident + _Any.defaultIdentNumber__);
-
-        s = s + getWhiteSpaces(ident) + "}\n";
-        return s;
-    } 
-    @Override 
-    protected String asStringThisOnly(int ident) {
-        String s = getWhiteSpaces(ident);
-        s = s + getWhiteSpaces(ident) + "self__: " + _self____._asString().s + "\n";
-        return s;
-    } 
-    protected _Any parent() {
-        return _Function_LT_GP__ExceptionStr_GP__Nil_GT.prototype;
-    }
-    protected CyString prototypePackage() {
-        return new CyString( "main" );
-    }
-    static final String prototypeName = "Fun_0__";
-    @Override     public String getPrototypeName() { return prototypeName; }
-    protected boolean isInterface() { return false; }
-
-    @Override public _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT getFeatureList() { return featureListFun_0__; }
-    @Override public _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT getSlotFeatureList() { return slotFeatureListFun_0__; }
-    @Override public _Array_LT_GP__Any_GT getAnnotList() { return annotListFun_0__; }
-
-}
-
     public String []getFieldTypeList() { 
         return fieldTypeList;
     }
@@ -297,6 +599,7 @@ private class _Fun__0____ extends cyan.lang._Function_LT_GP__ExceptionStr_GP__Ni
     @Override 
     protected String asStringThisOnly(int ident) {
         String s = getWhiteSpaces(ident);
+        s = s + getWhiteSpaces(ident) + "d: " + _d._asString().s + "\n";
         return s;
     } 
     protected _Any parent() {

@@ -1,16 +1,6 @@
 package main
 
-object ProgramMP
-
-    var Any d = Dummy();
-
-    /*
-    func run {
-        var j = toJson: Program();
-        Out println: j;
-    }
-    */
-
+object Dummy
     /*
         Return a string JSON corresponding to obj.
         If obj has methos getField, JSON has to be a (key, value)
@@ -28,13 +18,13 @@ object ProgramMP
                 var String methodName = _getMethodName: methodSignature;
                 if methodName notin: excludedGets {
                     var value = obj `methodName;
-                    if value getMethodNameList contains: "toJson: Any -> String" {
-                        json = json ++ "\t" ++ methodName ++ ": "
-                                    ++ value toJson ++ "\n";
-                    } else {
+                    //if value getMethodNameList contains: "toJson: Any -> String" {
+                    //    json = json ++ "\t" ++ methodName ++ ": "
+                    //                ++ value toJson ++ "\n";
+                    //} else {
                         json = json ++ "\t" ++ methodName ++ ": " 
                                     ++ obj `methodName ++ "\n";
-                    }
+                    //}
                 }
 
             }
@@ -54,36 +44,5 @@ object ProgramMP
         return methodSignature substring: 0, indexWhiteSpace;
     }
 
-    //func getSomething1 -> String = "bca";
-
-    //func getSomething2 -> Int = 2;
-
-    //func getSomething3 -> Double = 5.756;
-
-    func getSomething4 -> Any = d;
-    
-    func ex3 {
-        var p = Program();
-        for methodSignature in p getMethodNameList {
-            methodSignature println;
-        }
-    }
-
-    func ex2 {
-        for op in [ "+", "-", "*", "/" ] {
-            for a in 1..10 {
-                for b in 1..10 {
-                    (a asDouble `op: b asDouble) print;
-                    " " print;
-                }
-            }
-        }
-    }
-
-    func ex1 {
-        var s = "+";
-        var mn = "substring:";
-        Out println: (3 `s: 7);     //3 + 7
-        Out println: ( "abcde" `mn: 2 ); // "abcde" substring: 2
-    }
+    func getSomething1 -> String = "sjfnednfs";
 end

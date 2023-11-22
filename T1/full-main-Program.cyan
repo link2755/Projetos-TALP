@@ -3,6 +3,7 @@ package main
 object Program
 
     var Any d = Dummy();
+    var Any a = Program();
 
     func run {
         var j = toJson: Program();
@@ -26,6 +27,7 @@ object Program
                 var String methodName = _getMethodName: methodSignature;
                 if methodName notin: excludedGets {
                     var value = obj `methodName;
+                    d toJson: a;
                     //if value getMethodNameList contains: "toJson: Any -> String" {
                     //    json = json ++ "\t" ++ methodName ++ ": "
                     //                ++ value toJson ++ "\n";
@@ -84,4 +86,29 @@ object Program
         Out println: (3 `s: 7);     //3 + 7
         Out println: ( "abcde" `mn: 2 ); // "abcde" substring: 2
     }
+ @pushCompilationContextStatement(pp2, pp) 
+
+    // Methods added by the compiler
+    override    func prototype -> Program {
+        @javacode{* return prototype;
+        *}
+    } 
+ @popCompilationContext(pp2) 
+ @pushCompilationContextStatement(new7, new) 
+    // Methods added by the compiler
+
+    override    func clone -> Program {
+        @javacode<<*
+        try {
+            return (_Program ) this.clone(); 
+        } catch (CloneNotSupportedException e) { }
+        return null;
+        *>>    } 
+    func init { } 
+
+    func new -> Program {
+        @javacode<**< 
+            return new _Program();        >**>
+    }
+ @popCompilationContext(new7) 
 end

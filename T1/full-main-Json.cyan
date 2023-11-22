@@ -1,11 +1,12 @@
 package main
 
-object Dummy
-    /*
-        Return a string JSON corresponding to obj.
-        If obj has methos getField, JSON has to be a (key, value)
-    */
-    func toJson: Any obj -> String {
+object Json
+    var Int ident = 4;
+
+    func setDefaultIdent: Int ident { self.ident = ident }
+    func getDefaultIdent -> Int { return self.ident }
+
+    func toJson: Any obj -> String { 
         var String json = "{\n";
         var excludedGets = [
             "getFeatureListNameDoesNotCollide__",
@@ -19,10 +20,10 @@ object Dummy
                 if methodName notin: excludedGets {
                     var value = obj `methodName;
                     //if value getMethodNameList contains: "toJson: Any -> String" {
-                    //    json = json ++ "\t" ++ methodName ++ ": "
+                    //    json = json ++ "    " ++ methodName ++ ": "
                     //                ++ value toJson ++ "\n";
                     //} else {
-                    //    json = json ++ "\t" ++ methodName ++ ": " 
+                    //    json = json ++ "    " ++ methodName ++ ": " 
                     //                ++ obj `methodName ++ "\n";
                     //}
                 }
@@ -30,19 +31,19 @@ object Dummy
             }
         }
 
+        func _getMethodName: String methodSignature -> String {
+            var indexDoubleDot = methodSignature indexOf: ':';
+            if indexDoubleDot >= 0 { return "" };
+
+            var indexWhiteSpace = methodSignature indexOf: ' ';
+            if indexWhiteSpace <= 0 { return "" };
+
+            return methodSignature substring: 0, indexWhiteSpace;
+        }
+
         json = json ++ "}";
         return json;
     }
-
-    func _getMethodName: String methodSignature -> String {
-        var indexDoubleDot = methodSignature indexOf: ':';
-        if indexDoubleDot >= 0 { return "" };
-
-        var indexWhiteSpace = methodSignature indexOf: ' ';
-        if indexWhiteSpace <= 0 { return "" };
-
-        return methodSignature substring: 0, indexWhiteSpace;
-    }
-
-    func getSomething1 -> String = "sjfnednfs";
+    
+    //func toJson: Any obj, ident:  Int ident -> String { ... }
 end

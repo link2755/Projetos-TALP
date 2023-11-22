@@ -1,0 +1,87 @@
+Primeiro Trabalho de TALP
+
+Faça um protótipo
+  object Json
+      func setDefaultIdent: Int ident { ... }
+      func getDefaultIdent -> Int { ... }
+      func toJson: Any obj -> String { ... }
+      func toJson: Any obj,
+           ident:  Int ident -> String { ... }
+  end
+
+sendo que
+      func toJson: Any obj -> String { ... }
+retorna a string JSON do objeto 'obj' corretamente
+indentada.
+A indentação que é usada é aquela retornada por getDefaultIdent. O método
+     setDefaultIdent:
+inicializa o valor padrão para a identação.
+
+
+O método
+      func toJson: Any obj,
+           ident:  Int ident -> String { ... }
+permite indicar a identação diretamente na chamada a
+este método.
+
+Alguns erros podem acontecer na conversão do
+objeto para JSON:
+(a) há recursividade entre os objetos (aaa
+   refere-se a bbb e vice-versa). Neste caso,
+   atire a exceção ExceptionJsonRecursivity;
+(b) o tipo de 'obj' passado ao método "toJson:" ou
+    "toJson:ident:" não pode ser nenhum tipo do
+    pacote 'cyan.lang' com exceção de Array<...>.
+    Caso contrário, lance a exceção 
+    ExceptionJsonInvalidType.
+(c) o argumento inicial de "toJson:" ou "toJson:ident:",
+   'obj', refere-se (necessariamente) a outros objetos, que
+   se referem-se a outros objetos e assim por diante.
+   Se um destes objetos referenciados indiretamente
+   por 'obj' for do pacote 'cyan.lang', o seu tipo
+   tem que ser Array<...>, Byte, Char, Short, Int, 
+   Long, Float, Double, ou String. Se não for, 
+   lance a exceção ExceptionJsonInvalidType.
+
+
+Faça estas duas classes de exceção e o
+superprotótipo delas, ExceptionJson. Este
+superprotótipo deve ter um método 'errorMessage'
+que retorna uma string com o erro. Este erro
+deve ser específico como "O tipo de um dos objetos
+é 'Function<Int>', que não é um tipo válido para
+a conversão para JSON" e não apenas "tipo inválido".
+
+Faça um protótipo CatchExceptionJson que captura
+as duas possíveis exceções citadas acima e
+simplesmente emite a mensagem de erro. Então
+faça dois métodos 'eval:' neste protótipo:
+
+object CatchStr
+    func eval: ExceptionJsonRecursivity e {
+        ...
+    }
+    func eval: ExceptionJsonInvalidType e {
+        ...
+    }
+end
+
+Faça testes para o seu programa que exercitem
+todas as funcionalidades acima.
+
+Veremos um exemplo que usa os protótipos abaixo.
+
+@init(name, age, address)
+object Person
+    @property String name
+    @property Int age
+    @property Address address
+end
+
+@init(street, number)
+object Address
+    @property String street
+    @property Int number
+end
+    
+

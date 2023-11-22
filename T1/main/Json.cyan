@@ -1,20 +1,25 @@
 package main
 
-object Program
+object Json
 
-    var Any d = Dummy();
+    var Int ident = 4;
 
-    func run {
-        var j = toJson: Program();
-        Out println: j;
-    }
+    var validTypes = [ "Array<", "Boolean", "Byte", "Char", 
+        "Double", "Float", "Int", "Long",
+        "Short",
+        
+        "String",
+        
+        
+        
+    ];
 
-    /*
-        Return a string JSON corresponding to obj.
-        If obj has methos getField, JSON has to be a (key, value)
-    */
-    func toJson: Any obj -> String {
+    func setDefaultIdent: Int ident { self.ident = ident }
+    func getDefaultIdent -> Int = self.ident;
+
+    func toJson: Any obj -> String { 
         var String json = "{\n";
+
         var excludedGets = [
             "getFeatureListNameDoesNotCollide__",
             "getAnnotListNameDoesNotCollide__",
@@ -27,10 +32,10 @@ object Program
                 if methodName notin: excludedGets {
                     var value = obj `methodName;
                     //if value getMethodNameList contains: "toJson: Any -> String" {
-                    //    json = json ++ "\t" ++ methodName ++ ": "
+                    //    json = json ++ "    " ++ methodName ++ ": "
                     //                ++ value toJson ++ "\n";
                     //} else {
-                    //    json = json ++ "\t" ++ methodName ++ ": " 
+                    //    json = json ++ "    " ++ methodName ++ ": " 
                     //                ++ obj `methodName ++ "\n";
                     //}
                 }
@@ -41,6 +46,8 @@ object Program
         json = json ++ "}";
         return json;
     }
+    
+    //func toJson: Any obj, ident: Int ident -> String { ... }
 
     func _getMethodName: String methodSignature -> String {
         var indexDoubleDot = methodSignature indexOf: ':';
@@ -50,38 +57,5 @@ object Program
         if indexWhiteSpace <= 0 { return "" };
 
         return methodSignature substring: 0, indexWhiteSpace;
-    }
-
-    //func getSomething1 -> String = "bca";
-
-    //func getSomething2 -> Int = 2;
-
-    //func getSomething3 -> Double = 5.756;
-
-    func getSomething4 -> Any = d;
-    
-    func ex3 {
-        var p = Program();
-        for methodSignature in p getMethodNameList {
-            methodSignature println;
-        }
-    }
-
-    func ex2 {
-        for op in [ "+", "-", "*", "/" ] {
-            for a in 1..10 {
-                for b in 1..10 {
-                    (a asDouble `op: b asDouble) print;
-                    " " print;
-                }
-            }
-        }
-    }
-
-    func ex1 {
-        var s = "+";
-        var mn = "substring:";
-        Out println: (3 `s: 7);     //3 + 7
-        Out println: ( "abcde" `mn: 2 ); // "abcde" substring: 2
     }
 end

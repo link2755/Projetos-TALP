@@ -1,17 +1,18 @@
-package cyan.lang;
+package main;
 import cyanruntime.*;
 
+import cyan.lang.*;
 
 
 @SuppressWarnings( { "unused", "cast", "hiding" } )
-public class _Function_LT_GP__ExceptionStr_GP__Nil_GT extends _Any
+public class _ProgramExc extends _Any
  {
 
-	private static final long serialVersionUID = 1146720039897234361L;
+	private static final long serialVersionUID = -8773338067738857965L;
     static { 
         try {
 
-          _Function_LT_GP__ExceptionStr_GP__Nil_GT.prototype = new _Function_LT_GP__ExceptionStr_GP__Nil_GT();
+          _ProgramExc.prototype = new _ProgramExc();
         }
         catch ( ExceptionInInitializerError e ) {
             System.out.println("Probably this prototype is referenced indirectly in a method called " + 
@@ -33,60 +34,97 @@ public class _Function_LT_GP__ExceptionStr_GP__Nil_GT extends _Any
 
     }
 
-    public     _Function_LT_GP__ExceptionStr_GP__Nil_GT() {
+    public     _ProgramExc() {
 
         } 
 
-    public _Function_LT_GP__ExceptionStr_GP__Nil_GT _new() {
+    public main._ProgramExc _new() {
          
-            return new _Function_LT_GP__ExceptionStr_GP__Nil_GT();         
+            return new _ProgramExc();        
         } 
 
-    public @Override _Function_LT_GP__ExceptionStr_GP__Nil_GT _prototype() {
+    public void _run() {
+        CyBoolean tmp535 = CyBoolean.cyFalse;
+
+        CyBoolean _k;
+        _k = tmp535;
+        _CatchStrCast _myCatch;
+        if ( _k.b ) {
+            /* myCatch = CatchStrCast */
+            _myCatch = _CatchStrCast.prototype;
+        }
+        else {
+            /* myCatch = SoftCatchStrCast */
+            _myCatch = _SoftCatchStrCast.prototype;
+        }
+        // end of if
+
+        CyInt _n;
+        _n = (new CyInt( (int ) 20));
+        try {
+            CyBoolean tmp537 = _n._lessThan_equal( CyInt.zero);
+            if ( tmp537.b ) {
+                _ExceptionStr tmp538 = new _ExceptionStr( (new CyString("Num <= 0")));
+                throw new ExceptionContainer__(tmp538);
+            }
+            // end of if
+            CyBoolean tmp539 = _n._greaterThan_equal( (new CyInt( (int ) 13)));
+            if ( tmp539.b ) {
+                _ExceptionCast tmp540 = new _ExceptionCast( (new CyString("number cannot be month")));
+                throw new ExceptionContainer__(tmp540);
+            }
+            // end of if
+        }
+        catch (ExceptionContainer__ t) {
+            Object []tmp536 = new Object[1];
+            tmp536[0] = _myCatch;
+            CyanRuntime.catchException(tmp536,  t);
+        }
+        _Fun__0____ tmp541 = new _Fun__0____(this);
+
+        _Function_LT_GP__ExceptionStr_GP__Nil_GT _exc;
+        _exc = tmp541;
+        _ExceptionStr tmp543 = new _ExceptionStr( (new CyString("An exception was thrown.")));
+        _Nil tmp542 = _Nil.prototype;
+        _exc._eval_1( tmp543);
+        return ;
+        } 
+
+    public @Override main._ProgramExc _prototype() {
          return prototype;
         
         } 
 
-    public void  _eval_1( _ExceptionStr tmp554 ) {
-        throw new ExceptionContainer__(new _ExceptionCannotCallAbstractMethod());
-}
-
-    public _Function_LT_GP__Nil_GT  _curry_1( _ExceptionStr _t1 )  {
-        _Fun__0____ tmp555 = new _Fun__0____(this, _t1);
-
-        return tmp555;
-        } 
-
-    public @Override _Function_LT_GP__ExceptionStr_GP__Nil_GT _clone() {
+    public @Override main._ProgramExc _clone() {
         
         try {
-            return (_Function_LT_GP__ExceptionStr_GP__Nil_GT ) this.clone(); 
+            return (_ProgramExc ) this.clone(); 
         } catch (CloneNotSupportedException e) { }
         return null;
         
         } 
 
     public @Override _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT _getFeatureListNameDoesNotCollide____() {
-        _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT tmp556 = new _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
+        _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT tmp544 = new _Array_LT_GP__Tuple_LT_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
 
-        return tmp556;
+        return tmp544;
         } 
 
     public @Override _Array_LT_GP__Any_GT _getAnnotListNameDoesNotCollide____() {
-        _Array_LT_GP__Any_GT tmp557 = new _Array_LT_GP__Any_GT();
+        _Array_LT_GP__Any_GT tmp545 = new _Array_LT_GP__Any_GT();
 
-        return tmp557;
+        return tmp545;
         } 
 
     public @Override _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT _getSlotFeatureListNameDoesNotCollide____() {
-        _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT tmp558 = new _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
+        _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT tmp546 = new _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
 
         _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT _slotFeatureList__name__does__not__collide____;
-        _slotFeatureList__name__does__not__collide____ = tmp558;
+        _slotFeatureList__name__does__not__collide____ = tmp546;
 
         return _slotFeatureList__name__does__not__collide____;
         } 
-    public static _Function_LT_GP__ExceptionStr_GP__Nil_GT prototype;
+    public static _ProgramExc prototype;
     private static _Fun__0____ prototypeFun_0__;
 
     static final String []fieldListFun_0__ = {  };
@@ -96,9 +134,9 @@ public class _Function_LT_GP__ExceptionStr_GP__Nil_GT extends _Any
 
     static final _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT slotFeatureListFun_0__ = new _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
     static CyString []methodNameListFun_0__ = { 
-        new CyString("eval -> Nil"),
-        new CyString("clone -> Fun_0__"),
-        new CyString("prototype -> Fun_0__")
+        new CyString("eval: ExceptionStr -> Nil"),
+        new CyString("clone -> main.Fun_0__"),
+        new CyString("prototype -> main.Fun_0__")
         };
 
 
@@ -109,10 +147,9 @@ public class _Function_LT_GP__ExceptionStr_GP__Nil_GT extends _Any
 
     static final _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT slotFeatureList = new _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT();
     static CyString []methodNameList = { 
-        new CyString("prototype -> Function<ExceptionStr,Nil>"),
-        new CyString("eval: ExceptionStr -> Nil"),
-        new CyString("curry: ExceptionStr -> Function<Nil>"),
-        new CyString("clone -> Function<ExceptionStr,Nil>"),
+        new CyString("run -> Nil"),
+        new CyString("prototype -> main.ProgramExc"),
+        new CyString("clone -> main.ProgramExc"),
         new CyString("getFeatureListNameDoesNotCollide__ -> Array<Tuple<key,String,value,Any>>"),
         new CyString("getAnnotListNameDoesNotCollide__ -> Array<Any>"),
         new CyString("getSlotFeatureListNameDoesNotCollide__ -> Array<Tuple<slotName,String,key,String,value,Any>>")
@@ -164,32 +201,33 @@ public class _Function_LT_GP__ExceptionStr_GP__Nil_GT extends _Any
     private _Array_LT_GP__Tuple_LT_GP__slotName_GP_CyString_GP__key_GP_CyString_GP__value_GP__Any_GT_GT _getSlotFeatureListNameDoesNotCollide_____super__() { return super._getSlotFeatureListNameDoesNotCollide____(); }
     
     @SuppressWarnings( { "unused", "cast", "hiding" } )
-private class _Fun__0____ extends cyan.lang._Function_LT_GP__Nil_GT
+private class _Fun__0____ extends cyan.lang._Function_LT_GP__ExceptionStr_GP__Nil_GT
  {
 
 	private static final long serialVersionUID = 8886654447734910976L;
         public _Fun__0____(NonExistingJavaClass doNotExit) {
             super();
         }
-        private         cyan.lang._Function_LT_GP__ExceptionStr_GP__Nil_GT _self____;
-        private         cyan.lang._ExceptionStr _t1;
+        private         main._ProgramExc _self____;
         public _Fun__0____() { }
 
-        public         _Fun__0____(_Function_LT_GP__ExceptionStr_GP__Nil_GT _self____, _ExceptionStr _t1)  {
+        public         _Fun__0____(main._ProgramExc _self____)  {
 
             
         this._self____ = _self____;
-        this._t1 = _t1;
         
             } 
 
-        public _Fun__0____  _new_2( _Function_LT_GP__ExceptionStr_GP__Nil_GT _self____, _ExceptionStr _t1 )  {
+        public _Fun__0____  _new_1( main._ProgramExc _self____ )  {
              
-            return new _Fun__0____(_self____, _t1);
+            return new _Fun__0____(_self____);
         
             } 
 
-        public @Override void _eval() {
+        public @Override void  _eval_1( _ExceptionStr _e )  {
+            CyString tmp548 = _e._message();
+            _Nil tmp547 = _Nil.prototype;
+            tmp548._println();
             return ;
             } 
 
@@ -214,7 +252,7 @@ private class _Fun__0____ extends cyan.lang._Function_LT_GP__Nil_GT
     }
     public String asString(int ident) {
         String s =  "Fun_0__ {\n";
-        s = s + "super(cyan.lang.Function<Nil>):"  + super.asStringThisOnly( ident + _Any.defaultIdentNumber__ );
+        s = s + "super(cyan.lang.Function<ExceptionStr,Nil>):"  + super.asStringThisOnly( ident + _Any.defaultIdentNumber__ );
         s = s + asStringThisOnly( ident + _Any.defaultIdentNumber__);
 
         s = s + getWhiteSpaces(ident) + "}\n";
@@ -224,14 +262,13 @@ private class _Fun__0____ extends cyan.lang._Function_LT_GP__Nil_GT
     protected String asStringThisOnly(int ident) {
         String s = getWhiteSpaces(ident);
         s = s + getWhiteSpaces(ident) + "self__: " + _self____._asString().s + "\n";
-        s = s + getWhiteSpaces(ident) + "t1: " + _t1._asString().s + "\n";
         return s;
     } 
     protected _Any parent() {
-        return _Function_LT_GP__Nil_GT.prototype;
+        return _Function_LT_GP__ExceptionStr_GP__Nil_GT.prototype;
     }
     protected CyString prototypePackage() {
-        return new CyString( "cyan.lang" );
+        return new CyString( "main" );
     }
     static final String prototypeName = "Fun_0__";
     @Override     public String getPrototypeName() { return prototypeName; }
@@ -250,7 +287,7 @@ private class _Fun__0____ extends cyan.lang._Function_LT_GP__Nil_GT
         return fieldList;
     }
     public String asString(int ident) {
-        String s =  "Function<ExceptionStr,Nil> {\n";
+        String s =  "ProgramExc {\n";
         s = s + "super(Any):"  + super.asStringThisOnly( ident + _Any.defaultIdentNumber__ );
         s = s + asStringThisOnly( ident + _Any.defaultIdentNumber__);
 
@@ -266,9 +303,9 @@ private class _Fun__0____ extends cyan.lang._Function_LT_GP__Nil_GT
         return _Any.prototype;
     }
     protected CyString prototypePackage() {
-        return new CyString( "cyan.lang" );
+        return new CyString( "main" );
     }
-    static final String prototypeName = "Function<ExceptionStr,Nil>";
+    static final String prototypeName = "ProgramExc";
     @Override     public String getPrototypeName() { return prototypeName; }
     protected boolean isInterface() { return false; }
 
