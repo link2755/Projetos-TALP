@@ -1,0 +1,9 @@
+package exceptions
+
+object CatchExceptionJson
+
+	  func eval: ExceptionJson e {
+      Out println: e errorMessage;
+    }
+  
+end

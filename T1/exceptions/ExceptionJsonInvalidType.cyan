@@ -1,0 +1,10 @@
+package exceptions
+
+object ExceptionJsonInvalidType(Any obj) extends ExceptionJson
+
+    override
+	  func errorMessage -> String {
+      return "Tipagem incorreta de objeto, o tipo usado: '" ++ (obj prototypeName) ++ "', não pode ser convertido para JSON";
+    }
+
+end
