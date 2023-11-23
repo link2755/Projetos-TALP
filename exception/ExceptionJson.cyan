@@ -1,0 +1,10 @@
+package exception
+
+open
+object ExceptionJson(Any obj) extends CyException
+
+	  func errorMessage -> String {
+      return "Ocorreu um erro.";
+    }
+
+end

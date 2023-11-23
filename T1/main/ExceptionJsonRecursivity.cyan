@@ -1,0 +1,9 @@
+object ExceptionJsonRecursivity(Any obj) extends ExceptionJson
+
+    override
+	  func errorMessage -> String {
+      return "O protótipo " ++ (obj prototypeName) ++ 
+            " possui recursividade circular, logo não pode ser convertido.";
+    }
+
+end

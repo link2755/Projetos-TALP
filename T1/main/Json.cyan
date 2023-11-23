@@ -4,42 +4,98 @@ object Json
 
     var Int ident = 4;
 
-    var validTypes = [ "Array<", "Boolean", "Byte", "Char", 
-        "Double", "Float", "Int", "Long",
-        "Short",
-        
-        "String",
-        
-        
-        
+    var Array<String> validTypes = [ "Array", "Boolean", "Byte", "Char", 
+        "Double", "Float", "Int", "Long", "Short", "String" ];
+
+    var Array<String> invalidTypes = [ "DTuple", "Function", "HashMap", 
+        "Interval", "Iterator", "Set", "Stack" ];
+
+    var Array<String> excludedGets = [
+        "getFeatureListNameDoesNotCollide__",
+        "getAnnotListNameDoesNotCollide__",
+        "getSlotFeatureListNameDoesNotCollide__"
     ];
 
     func setDefaultIdent: Int ident { self.ident = ident }
     func getDefaultIdent -> Int = self.ident;
 
+    func isValidType: String valueType -> Boolean {
+        var ignoreIndex = valueType indexOf: '<';
+        var typeName = "";
+
+        if ignoreIndex == -1 {
+            typeName = valueType;
+        } else {
+            typeName = valueType substring: 0, ignoreIndex;
+        }
+
+        return (validTypes contains: typeName);
+    }
+
+    func isInvalidType: String valueType -> Boolean {
+        var ignoreIndex = valueType indexOf: '<';
+        var typeName = "";
+
+        if ignoreIndex == -1 {
+            typeName = valueType;
+        } else {
+            typeName = valueType substring: 0, ignoreIndex;
+        }
+
+        return (invalidTypes contains: typeName);
+    }
+
+    func checkValue: Any value, Array<String> prototypeNameHistory -> String {
+        var valueType = value prototypeName;
+        try 
+            if isValidType: valueType {
+                if valueType in: prototypeNameHistory {
+                    throw: ExceptionJsonRecursivity(value);
+                }
+                return "$value";
+            } else if isInvalidType: valueType {
+                throw: ExceptionJsonInvalidType(value);
+            } else if value isA: Char {
+                return "\'" ++ value ++ "\'";
+            } else if value isA: String {
+                return "\"" ++ value ++ "\"";
+            } else {
+                return "$value";
+            }
+        catch { (: ExceptionJson e :)
+            CatchExceptionJson eval: e;
+        };
+        return "";
+    }
+
+    /*
+        Return a string JSON corresponding to obj.
+        If obj has methos getField, JSON has to be a (key, value)
+    */
     func toJson: Any obj -> String { 
         var String json = "{\n";
 
-        var excludedGets = [
-            "getFeatureListNameDoesNotCollide__",
-            "getAnnotListNameDoesNotCollide__",
-            "getSlotFeatureListNameDoesNotCollide__"
-        ];
+        // Prepare identation
+        var numSpaces = self getDefaultIdent;
+        var ident = "";
+        for i in 0..< numSpaces { ident = ident  ++ " "; }
 
         for methodSignature in obj getMethodNameList {
-            if methodSignature startsWith: "get" { 
-                var String methodName = _getMethodName: methodSignature;
-                if methodName notin: excludedGets {
-                    var value = obj `methodName;
-                    //if value getMethodNameList contains: "toJson: Any -> String" {
-                    //    json = json ++ "    " ++ methodName ++ ": "
-                    //                ++ value toJson ++ "\n";
-                    //} else {
-                    //    json = json ++ "    " ++ methodName ++ ": " 
-                    //                ++ obj `methodName ++ "\n";
-                    //}
-                }
+            var String methodName = _getMethodName: methodSignature;
+            if methodName startsWith: "get" && methodName notin: excludedGets { 
+                var value = obj `methodName;
+                var valueType = value prototypeName;
+                var valueName = methodName substring: 3;
 
+                printexpr (checkValue: value, [ "" ]);
+
+                //if value getMethodNameList contains: "toJson: Any -> String" {
+                //    json = json ++ "    " ++ methodName ++ ": "
+                //                ++ value toJson ++ "\n";
+                //} else {
+                //    json = json ++ "    " ++ methodName ++ ": " 
+                //                ++ obj `methodName ++ "\n";
+                //}
             }
         }
 
