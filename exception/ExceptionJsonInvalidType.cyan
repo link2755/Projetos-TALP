@@ -1,0 +1,11 @@
+package main
+
+object ExceptionJsonInvalidType(Any obj) extends ExceptionJson
+
+    override
+	  func errorMessage -> String {
+      return "O tipo de um dos objetos é \'" ++ (obj prototypeName) ++ 
+            "\' que não é um tipo válido para a conversão para JSON.";
+    }
+
+end

@@ -1,0 +1,10 @@
+package main
+
+open
+object ExceptionJson(Any obj)
+
+	  func errorMessage -> String {
+      return "Ocorreu um erro.";
+    }
+
+end

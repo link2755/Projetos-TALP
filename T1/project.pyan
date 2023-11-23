@@ -1,3 +1,5 @@
-program at "D:\TALP\Projetos-TALP\T1"
+program at "C:\CyanProgramming\Projetos-TALP\T1"
 
-    package main at "D:\TALP\Projetos-TALP\T1\main"
+    package main at "C:\CyanProgramming\Projetos-TALP\T1\main"
+    package exceptions at "C:\CyanProgramming\Projetos-TALP\T1\exceptions"
+
