@@ -1,0 +1,142 @@
+package main
+
+object Json
+
+    var Int ident = 4;
+
+    var Array<String> validTypes = [ "Array", "Boolean", "Byte", "Char", 
+        "Double", "Float", "Int", "Long", "Short", "String" ];
+
+    var Array<String> invalidTypes = [ "DTuple", "Function", "HashMap", 
+        "Interval", "Iterator", "Set", "Stack" ];
+
+    var Array<String> excludedGets = [
+        "getFeatureListNameDoesNotCollide__",
+        "getAnnotListNameDoesNotCollide__",
+        "getSlotFeatureListNameDoesNotCollide__"
+    ];
+
+    func setDefaultIdent: Int ident { self.ident = ident }
+    func getDefaultIdent -> Int = self.ident;
+
+    func isValidType: String valueType -> Boolean {
+        var ignoreIndex = valueType indexOf: '<';
+        var typeName = "";
+
+        if ignoreIndex == -1 {
+            typeName = valueType;
+        } else {
+            typeName = valueType substring: 0, ignoreIndex;
+        }
+
+        return (validTypes contains: typeName);
+    }
+
+    func isInvalidType: String valueType -> Boolean {
+        var ignoreIndex = valueType indexOf: '<';
+        var typeName = "";
+
+        if ignoreIndex == -1 {
+            typeName = valueType;
+        } else {
+            typeName = valueType substring: 0, ignoreIndex;
+        }
+
+        return (invalidTypes contains: typeName);
+    }
+
+    func checkValue: Any value, Array<String> prototypeNameHistory -> String {
+        var valueType = value prototypeName;
+        try 
+            if isValidType: valueType {
+                if valueType in: prototypeNameHistory {
+                    throw: ExceptionJsonRecursivity(value);
+                }
+                return "$value";
+            } else if isInvalidType: valueType {
+                throw: ExceptionJsonInvalidType(value);
+            } else if value isA: Char {
+                return "\'" ++ value ++ "\'";
+            } else if value isA: String {
+                return "\"" ++ value ++ "\"";
+            } else {
+                return "$value";
+            }
+        catch { (: ExceptionJson e :)
+            CatchExceptionJson eval: e;
+        };
+        return "";
+    }
+
+    /*
+        Return a string JSON corresponding to obj.
+        If obj has methos getField, JSON has to be a (key, value)
+    */
+    func toJson: Any obj -> String { 
+        var String json = "{\n";
+
+        // Prepare identation
+        var numSpaces = self getDefaultIdent;
+        var ident = "";
+        for i in 0..< numSpaces { ident = ident  ++ " "; }
+
+        for methodSignature in obj getMethodNameList {
+            var String methodName = _getMethodName: methodSignature;
+            if methodName startsWith: "get" && methodName notin: excludedGets { 
+                var value = obj `methodName;
+                var valueType = value prototypeName;
+                var valueName = methodName substring: 3;
+
+                printexpr (checkValue: value, [ "" ]);
+
+                //if value getMethodNameList contains: "toJson: Any -> String" {
+                //    json = json ++ "    " ++ methodName ++ ": "
+                //                ++ value toJson ++ "\n";
+                //} else {
+                //    json = json ++ "    " ++ methodName ++ ": " 
+                //                ++ obj `methodName ++ "\n";
+                //}
+            }
+        }
+
+        json = json ++ "}";
+        return json;
+    }
+    
+    //func toJson: Any obj, ident: Int ident -> String { ... }
+
+    func _getMethodName: String methodSignature -> String {
+        var indexDoubleDot = methodSignature indexOf: ':';
+        if indexDoubleDot >= 0 { return "" };
+
+        var indexWhiteSpace = methodSignature indexOf: ' ';
+        if indexWhiteSpace <= 0 { return "" };
+
+        return methodSignature substring: 0, indexWhiteSpace;
+    }
+ @pushCompilationContextStatement(pp0, pp) 
+
+    // Methods added by the compiler
+    override    func prototype -> Json {
+        @javacode{* return prototype;
+        *}
+    } 
+ @popCompilationContext(pp0) 
+ @pushCompilationContextStatement(new2, new) 
+    // Methods added by the compiler
+
+    override    func clone -> Json {
+        @javacode<<*
+        try {
+            return (_Json ) this.clone(); 
+        } catch (CloneNotSupportedException e) { }
+        return null;
+        *>>    } 
+    func init { } 
+
+    func new -> Json {
+        @javacode<**< 
+            return new _Json();        >**>
+    }
+ @popCompilationContext(new2) 
+end

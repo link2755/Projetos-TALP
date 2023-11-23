@@ -1,5 +1,3 @@
-package exception
-
 object ExceptionJsonRecursivity(Any obj) extends ExceptionJson
 
     override

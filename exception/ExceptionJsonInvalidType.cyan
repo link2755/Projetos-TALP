@@ -1,5 +1,3 @@
-package exception
-
 object ExceptionJsonInvalidType(Any obj) extends ExceptionJson
 
     override

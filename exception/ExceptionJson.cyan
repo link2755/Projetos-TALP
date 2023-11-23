@@ -1,7 +1,5 @@
-package exception
-
 open
-object ExceptionJson(Any obj) extends CyException
+object ExceptionJson(Any obj)
 
 	  func errorMessage -> String {
       return "Ocorreu um erro.";
